@@ -17,7 +17,7 @@ namespace Mirror
         public int offsetY;
         //int width = (int)(Screen.width / 12.8f);
         //int height = (int)(Screen.height / 21.6f);
-        public static int buttonWidth = 300;
+        public static int buttonWidth = Screen.width / 3;
         public static int buttonHeight = 100;
 
         void Awake()

@@ -33,7 +33,7 @@ public class ClientController : NetworkBehaviour
     {
         Application.runInBackground = true;
         inputSimulator = new InputSimulator();
-        transform.localScale = Camera.main.ScreenToViewportPoint(new Vector3(Screen.width, Screen.height, 1));
+        transform.localScale = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width * 2, Screen.height, 1));
     }
 
     [ClientCallback]
@@ -71,6 +71,7 @@ public class ClientController : NetworkBehaviour
     [ClientCallback]
     private void Update()
     {
+        if (Input.GetMouseButtonDown(0)) prevMouse = Input.mousePosition;
     }
 
     private Quaternion GyroToUnity(Quaternion q)
@@ -81,7 +82,6 @@ public class ClientController : NetworkBehaviour
     [ClientCallback]
     private void OnMouseDrag()
     {
-        if (Input.GetMouseButtonDown(0)) prevMouse = Input.mousePosition;
         deltaMouse = Input.mousePosition - prevMouse;
         if (isLocalPlayer)
         {
